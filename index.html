@@ -5,1128 +5,1651 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jay Thoriya Portfolio</title>
+  <meta name="description"
+    content="Jay Thoriya — Lead AI/ML Engineer specializing in LLMs, Generative AI, RAG pipelines, and intelligent document processing. Building enterprise-grade AI platforms.">
+  <meta name="keywords" content="Jay Thoriya, AI Engineer, ML Engineer, LLM, Generative AI, RAG, Portfolio">
+  <meta name="author" content="Jay Thoriya">
 
-  <!--
-    - favicon
-  -->
-  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+  <title>Jay Thoriya · Lead AI/ML Engineer</title>
 
-  <!--
-    - custom css link
-  -->
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg">
+  <link rel="shortcut icon" href="./assets/images/favicon.svg">
 
-  <!--
-    - google font link
-  -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
 
-  <!--
-    - #MAIN
-  -->
+  <!-- ============================================
+       LOADING SCREEN
+  ============================================= -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-rings">
+        <svg viewBox="0 0 200 200" class="loader-svg">
+          <defs>
+            <linearGradient id="loaderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00ffd1" />
+              <stop offset="100%" stop-color="#b066ff" />
+            </linearGradient>
+          </defs>
+          <circle class="loader-ring r1" cx="100" cy="100" r="80" />
+          <circle class="loader-ring r2" cx="100" cy="100" r="60" />
+          <circle class="loader-ring r3" cx="100" cy="100" r="40" />
+          <circle class="loader-core" cx="100" cy="100" r="6" />
+        </svg>
+      </div>
+      <div class="loader-text">
+        <span>I</span><span>N</span><span>I</span><span>T</span>
+        <span>I</span><span>A</span><span>L</span><span>I</span>
+        <span>Z</span><span>I</span><span>N</span><span>G</span>
+        <span class="space"></span>
+        <span>N</span><span>E</span><span>U</span><span>R</span>
+        <span>A</span><span>L</span>
+        <span class="space"></span>
+        <span>N</span><span>E</span><span>T</span>
+      </div>
+      <div class="loader-bar">
+        <div class="loader-bar-fill" id="loaderFill"></div>
+      </div>
+      <div class="loader-meta">
+        <span id="loaderPercent">0</span>
+        <span class="loader-divider">/</span>
+        <span>100</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       CUSTOM CURSOR
+  ============================================= -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing">
+    <span class="cursor-text" id="cursorText"></span>
+  </div>
+
+  <!-- ============================================
+       BACKGROUND LAYERS
+  ============================================= -->
+  <canvas class="bg-canvas" id="bgCanvas"></canvas>
+  <div class="grid-bg"></div>
+  <div class="noise"></div>
+  <div class="gradient-glow gradient-glow-1"></div>
+  <div class="gradient-glow gradient-glow-2"></div>
+
+  <!-- ============================================
+       NAVIGATION
+  ============================================= -->
+  <nav class="nav" id="nav">
+    <a href="#hero" class="nav-logo" data-cursor="link">
+      <span class="logo-bracket">{</span>
+      <span class="logo-text">JT</span>
+      <span class="logo-dot">.</span>
+      <span class="logo-suffix">AI</span>
+      <span class="logo-bracket">}</span>
+    </a>
+
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#hero" class="nav-link active" data-section="hero" data-cursor="link"><span
+            class="nav-num">00.</span><span class="nav-label">Home</span></a></li>
+      <li><a href="#about" class="nav-link" data-section="about" data-cursor="link"><span
+            class="nav-num">01.</span><span class="nav-label">About</span></a></li>
+      <li><a href="#skills" class="nav-link" data-section="skills" data-cursor="link"><span
+            class="nav-num">02.</span><span class="nav-label">Skills</span></a></li>
+      <li><a href="#experience" class="nav-link" data-section="experience" data-cursor="link"><span
+            class="nav-num">03.</span><span class="nav-label">Experience</span></a></li>
+      <li><a href="#projects" class="nav-link" data-section="projects" data-cursor="link"><span
+            class="nav-num">04.</span><span class="nav-label">Work</span></a></li>
+      <li><a href="#contact" class="nav-link" data-section="contact" data-cursor="link"><span
+            class="nav-num">05.</span><span class="nav-label">Contact</span></a></li>
+    </ul>
+
+    <a href="#contact" class="nav-cta" data-cursor="link">
+      <span>Hire Me</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M13 5l7 7-7 7" />
+      </svg>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ============================================
+       SIDE SOCIALS
+  ============================================= -->
+  <aside class="side-socials">
+    <ul>
+      <li>
+        <a href="https://github.com/Jay-Thoriya" target="_blank" rel="noopener noreferrer" data-cursor="link"
+          aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.84-2.34 4.68-4.57 4.93.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/jay-thoriya/" target="_blank" rel="noopener noreferrer" data-cursor="link"
+          aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.instagram.com/lost_in_earth_74?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+          target="_blank" rel="noopener noreferrer" data-cursor="link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 01-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 017.8 2m-.2 2A3.6 3.6 0 004 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 003.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 011.25 1.25A1.25 1.25 0 0117.25 8 1.25 1.25 0 0116 6.75a1.25 1.25 0 011.25-1.25M12 7a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5m0 2a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3z" />
+          </svg>
+        </a>
+      </li>
+      <li>
+        <a href="mailto:jaythoriya8779@gmail.com" data-cursor="link" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+        </a>
+      </li>
+    </ul>
+    <div class="side-line"></div>
+  </aside>
+
+  <!-- ============================================
+       STATUS PANEL (right side)
+  ============================================= -->
+  <aside class="status-panel">
+    <div class="status-row">
+      <span class="status-label">SYS</span>
+      <span class="status-value">
+        <span class="status-dot"></span>ONLINE
+      </span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">LOC</span>
+      <span class="status-value">AHM_IN</span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">UTC</span>
+      <span class="status-value" id="liveTime">--:--:--</span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">v.</span>
+      <span class="status-value">2.0.0</span>
+    </div>
+  </aside>
+
+  <!-- ============================================
+       SCROLL PROGRESS
+  ============================================= -->
+  <div class="scroll-progress">
+    <div class="scroll-progress-fill" id="scrollProgress"></div>
+  </div>
 
   <main>
 
-    <!--
-      - #SIDEBAR
-    -->
+    <!-- ============================================
+         HERO SECTION
+    ============================================= -->
+    <section class="hero" id="hero">
+      <div class="hero-inner">
 
-    <aside class="sidebar" data-sidebar>
-
-      <div class="sidebar-info">
-
-        <figure class="avatar-box">
-          <img src="./assets/images/GIF.gif" alt="Jay Thoriya" width="80">
-        </figure>
-
-        <div class="info-content">
-          <h1 class="name" title="Sanskar Singh">Jay Thoriya</h1>
-
-          <p class="title">Lead AI/ML Engineer</p>
+        <div class="hero-status reveal">
+          <span class="hero-status-dot"></span>
+          <span>AVAILABLE FOR NEW OPPORTUNITIES</span>
         </div>
 
-        <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contacts</span>
+        <h1 class="hero-title">
+          <span class="hero-line reveal-text"><span data-text="JAY">JAY</span></span>
+          <span class="hero-line reveal-text"><span data-text="THORIYA">THORIYA</span></span>
+        </h1>
 
-          <ion-icon name="chevron-down"></ion-icon>
+        <div class="hero-subtitle reveal">
+          <span class="hero-prompt">&gt;_</span>
+          <span class="hero-typing" id="heroTyping"></span>
+          <span class="hero-cursor">▮</span>
+        </div>
+
+        <p class="hero-description reveal">
+          I architect <em>multi-agent AI platforms</em> and ship LLM-powered systems that turn messy enterprise
+          workflows into <em>clean, automated pipelines</em>. Currently leading AI/ML at Safalsoftcom.
+        </p>
+
+        <div class="hero-cta reveal">
+          <a href="#projects" class="btn btn-primary" data-cursor="link" data-magnetic>
+            <span class="btn-text">Explore Work</span>
+            <span class="btn-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M13 5l7 7-7 7" />
+              </svg>
+            </span>
+          </a>
+          <a href="#contact" class="btn btn-ghost" data-cursor="link" data-magnetic>
+            <span class="btn-text">Let's Talk</span>
+          </a>
+        </div>
+
+        <div class="hero-stats reveal">
+          <div class="stat-item">
+            <h3 class="stat-num" data-count="16">0</h3>
+            <p class="stat-label">Shipped<br>Projects</p>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <h3 class="stat-num" data-count="2" data-suffix="+">0</h3>
+            <p class="stat-label">Years<br>Experience</p>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <h3 class="stat-num" data-count="8" data-suffix="+">0</h3>
+            <p class="stat-label">Enterprise<br>AI Modules</p>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <h3 class="stat-num" data-count="98" data-suffix="%">0</h3>
+            <p class="stat-label">OCR<br>Precision</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="hero-scroll">
+        <div class="hero-scroll-line"></div>
+        <span>SCROLL</span>
+      </div>
+
+      <div class="hero-bracket-tl">[</div>
+      <div class="hero-bracket-tr">]</div>
+      <div class="hero-bracket-bl">[</div>
+      <div class="hero-bracket-br">]</div>
+
+    </section>
+
+    <!-- ============================================
+         ABOUT SECTION
+    ============================================= -->
+    <section class="about" id="about">
+      <div class="section-header">
+        <div class="section-num">01 / ABOUT</div>
+        <h2 class="section-title">
+          <span class="reveal-text"><span>The mind</span></span>
+          <span class="reveal-text"><span>behind <em>the models</em></span></span>
+        </h2>
+      </div>
+
+      <div class="about-grid">
+
+        <div class="about-text reveal">
+          <p class="about-lead">
+            I'm an AI/ML engineer obsessed with the intersection of <strong>large language models</strong>,
+            <strong>retrieval systems</strong>, and <strong>real production constraints</strong>.
+          </p>
+          <p>
+            I've spent the last few years architecting end-to-end AI platforms — from multi-agent procurement systems
+            and intelligent document processing pipelines to generative storybook creators that ship with
+            print-on-demand fulfillment built in.
+          </p>
+          <p>
+            What drives me: turning messy, manual workflows into automated systems that actually feel intelligent.
+            I write Python, ship on AWS, build with FastAPI, and live in OpenSearch indexes and vector stores.
+          </p>
+
+          <div class="about-tags">
+            <span class="tag">LLM Architecture</span>
+            <span class="tag">RAG Pipelines</span>
+            <span class="tag">Multi-Agent Systems</span>
+            <span class="tag">OCR + IDP</span>
+            <span class="tag">AWS Cloud</span>
+          </div>
+        </div>
+
+        <div class="about-card reveal" data-tilt>
+          <div class="about-card-header">
+            <div class="about-card-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="about-card-title">jay@portfolio:~</div>
+          </div>
+          <div class="about-card-body">
+            <p><span class="term-prompt">$</span> whoami</p>
+            <p class="term-out">jay_thoriya</p>
+            <p><span class="term-prompt">$</span> cat role.txt</p>
+            <p class="term-out">Lead AI/ML Engineer @ Safalsoftcom</p>
+            <p><span class="term-prompt">$</span> cat location.txt</p>
+            <p class="term-out">Ahmedabad, Gujarat, India 🇮🇳</p>
+            <p><span class="term-prompt">$</span> python -c "import skills; skills.list()"</p>
+            <p class="term-out">['LLMs', 'GenAI', 'RAG', 'PyTorch', 'TensorFlow',</p>
+            <p class="term-out">&nbsp;'FastAPI', 'AWS', 'Docker', 'OpenSearch', 'OCR']</p>
+            <p><span class="term-prompt">$</span> echo $STATUS</p>
+            <p class="term-out term-success">&gt; OPEN_TO_OPPORTUNITIES</p>
+            <p><span class="term-prompt">$</span> <span class="term-blink">█</span></p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Service grid -->
+      <div class="services">
+        <h3 class="services-title">
+          <span class="reveal-text"><span>What I build</span></span>
+        </h3>
+
+        <div class="services-grid">
+          <article class="service-card reveal" data-tilt data-cursor="hover">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="3" />
+                <circle cx="4" cy="6" r="2" />
+                <circle cx="20" cy="6" r="2" />
+                <circle cx="4" cy="18" r="2" />
+                <circle cx="20" cy="18" r="2" />
+                <path d="M6 6L9.5 10.5M18 6l-3.5 4.5M6 18l3.5-4.5M18 18l-3.5-4.5" />
+              </svg>
+            </div>
+            <span class="service-num">/01</span>
+            <h4 class="service-title">Generative AI &amp; LLMs</h4>
+            <p class="service-text">
+              Multi-agent architectures and LLM-powered platforms for enterprise automation, intelligent document
+              processing, and agentic workflows.
+            </p>
+            <ul class="service-tags">
+              <li>OpenAI</li>
+              <li>Anthropic</li>
+              <li>LangChain</li>
+              <li>RAG</li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal" data-tilt data-cursor="hover">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 12h4l3-9 4 18 3-9h4" />
+              </svg>
+            </div>
+            <span class="service-num">/02</span>
+            <h4 class="service-title">Machine &amp; Deep Learning</h4>
+            <p class="service-text">
+              ML/DL pipelines for OCR, NLP, computer vision, and predictive analytics — designed to scale with real
+              production data, not benchmarks.
+            </p>
+            <ul class="service-tags">
+              <li>PyTorch</li>
+              <li>TensorFlow</li>
+              <li>scikit-learn</li>
+              <li>Pandas</li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal" data-tilt data-cursor="hover">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path
+                  d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                <line x1="12" y1="22.08" x2="12" y2="12" />
+              </svg>
+            </div>
+            <span class="service-num">/03</span>
+            <h4 class="service-title">Cloud &amp; DevOps</h4>
+            <p class="service-text">
+              Scalable AWS infrastructure, Docker-based environments and CI/CD pipelines that keep deployments
+              zero-downtime and release cycles fast.
+            </p>
+            <ul class="service-tags">
+              <li>AWS</li>
+              <li>Docker</li>
+              <li>EC2/S3</li>
+              <li>Bedrock</li>
+            </ul>
+          </article>
+
+          <article class="service-card reveal" data-tilt data-cursor="hover">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="9" y1="13" x2="15" y2="13" />
+                <line x1="9" y1="17" x2="15" y2="17" />
+              </svg>
+            </div>
+            <span class="service-num">/04</span>
+            <h4 class="service-title">Document Intelligence</h4>
+            <p class="service-text">
+              High-volume OCR + ML pipelines extracting structured data from messy real-world documents at 98%+
+              precision. End-to-end automation.
+            </p>
+            <ul class="service-tags">
+              <li>OCR</li>
+              <li>Tesseract</li>
+              <li>Vector DB</li>
+              <li>OpenSearch</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         SKILLS SECTION
+    ============================================= -->
+    <section class="skills" id="skills">
+      <div class="section-header">
+        <div class="section-num">02 / TECH STACK</div>
+        <h2 class="section-title">
+          <span class="reveal-text"><span>Tools <em>I&nbsp;wield</em></span></span>
+          <span class="reveal-text"><span>every day</span></span>
+        </h2>
+      </div>
+
+      <div class="skills-grid">
+
+        <div class="skill-card reveal" data-tilt>
+          <div class="skill-head">
+            <h4 class="skill-name">LLMs &amp; Generative AI</h4>
+            <span class="skill-percent" data-target="95">0%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" data-fill="95"></div>
+          </div>
+          <ul class="skill-tags">
+            <li>OpenAI</li>
+            <li>Anthropic</li>
+            <li>Bedrock</li>
+            <li>Hugging Face</li>
+          </ul>
+        </div>
+
+        <div class="skill-card reveal" data-tilt>
+          <div class="skill-head">
+            <h4 class="skill-name">Python &amp; FastAPI</h4>
+            <span class="skill-percent" data-target="92">0%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" data-fill="92"></div>
+          </div>
+          <ul class="skill-tags">
+            <li>FastAPI</li>
+            <li>Async</li>
+            <li>Pydantic</li>
+            <li>SQLAlchemy</li>
+          </ul>
+        </div>
+
+        <div class="skill-card reveal" data-tilt>
+          <div class="skill-head">
+            <h4 class="skill-name">RAG &amp; LangChain</h4>
+            <span class="skill-percent" data-target="90">0%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" data-fill="90"></div>
+          </div>
+          <ul class="skill-tags">
+            <li>LangChain</li>
+            <li>LlamaIndex</li>
+            <li>Chroma</li>
+            <li>OpenSearch</li>
+          </ul>
+        </div>
+
+        <div class="skill-card reveal" data-tilt>
+          <div class="skill-head">
+            <h4 class="skill-name">ML &amp; Deep Learning</h4>
+            <span class="skill-percent" data-target="90">0%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" data-fill="90"></div>
+          </div>
+          <ul class="skill-tags">
+            <li>scikit-learn</li>
+            <li>XGBoost</li>
+            <li>Pandas</li>
+            <li>NumPy</li>
+          </ul>
+        </div>
+
+        <div class="skill-card reveal" data-tilt>
+          <div class="skill-head">
+            <h4 class="skill-name">NLP &amp; Computer Vision</h4>
+            <span class="skill-percent" data-target="88">0%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" data-fill="88"></div>
+          </div>
+          <ul class="skill-tags">
+            <li>OpenCV</li>
+            <li>Tesseract</li>
+            <li>spaCy</li>
+            <li>Transformers</li>
+          </ul>
+        </div>
+
+        <div class="skill-card reveal" data-tilt>
+          <div class="skill-head">
+            <h4 class="skill-name">PyTorch &amp; TensorFlow</h4>
+            <span class="skill-percent" data-target="85">0%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" data-fill="85"></div>
+          </div>
+          <ul class="skill-tags">
+            <li>PyTorch</li>
+            <li>TensorFlow</li>
+            <li>Keras</li>
+            <li>CUDA</li>
+          </ul>
+        </div>
+
+        <div class="skill-card reveal" data-tilt>
+          <div class="skill-head">
+            <h4 class="skill-name">AWS &amp; Docker</h4>
+            <span class="skill-percent" data-target="87">0%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" data-fill="87"></div>
+          </div>
+          <ul class="skill-tags">
+            <li>EC2 / S3</li>
+            <li>Bedrock</li>
+            <li>Lambda</li>
+            <li>Docker</li>
+          </ul>
+        </div>
+
+        <div class="skill-card reveal" data-tilt>
+          <div class="skill-head">
+            <h4 class="skill-name">Databases &amp; Search</h4>
+            <span class="skill-percent" data-target="82">0%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-fill" data-fill="82"></div>
+          </div>
+          <ul class="skill-tags">
+            <li>OpenSearch</li>
+            <li>PostgreSQL</li>
+            <li>MongoDB</li>
+            <li>Vector DBs</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Tech marquee -->
+      <div class="tech-marquee">
+        <div class="tech-marquee-track">
+          <span>PYTHON</span><span>•</span>
+          <span>PYTORCH</span><span>•</span>
+          <span>TENSORFLOW</span><span>•</span>
+          <span>LLMs</span><span>•</span>
+          <span>GenAI</span><span>•</span>
+          <span>RAG</span><span>•</span>
+          <span>LANGCHAIN</span><span>•</span>
+          <span>OCR</span><span>•</span>
+          <span>OPENSEARCH</span><span>•</span>
+          <span>FASTAPI</span><span>•</span>
+          <span>AWS</span><span>•</span>
+          <span>DOCKER</span><span>•</span>
+          <!-- duplicate for seamless loop -->
+          <span>PYTHON</span><span>•</span>
+          <span>PYTORCH</span><span>•</span>
+          <span>TENSORFLOW</span><span>•</span>
+          <span>LLMs</span><span>•</span>
+          <span>GenAI</span><span>•</span>
+          <span>RAG</span><span>•</span>
+          <span>LANGCHAIN</span><span>•</span>
+          <span>OCR</span><span>•</span>
+          <span>OPENSEARCH</span><span>•</span>
+          <span>FASTAPI</span><span>•</span>
+          <span>AWS</span><span>•</span>
+          <span>DOCKER</span><span>•</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         EXPERIENCE SECTION
+    ============================================= -->
+    <section class="experience" id="experience">
+      <div class="section-header">
+        <div class="section-num">03 / TIMELINE</div>
+        <h2 class="section-title">
+          <span class="reveal-text"><span>Career</span></span>
+          <span class="reveal-text"><span><em>trajectory</em></span></span>
+        </h2>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker">
+            <div class="timeline-marker-pulse"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="timeline-date">Aug 2025 — Present</span>
+              <span class="timeline-badge timeline-badge-active">Current</span>
+            </div>
+            <h3 class="timeline-role">Lead AI/ML Engineer</h3>
+            <p class="timeline-company">Safalsoftcom</p>
+            <p class="timeline-text">
+              Architected and deployed an ecosystem of <strong>8+ enterprise AI modules</strong> for a multi-domain
+              procurement platform. Leveraged LLMs, OpenSearch vector databases, and OCR pipelines to automate
+              end-to-end workflows — reducing manual intervention by up to <strong>75%</strong>. Orchestrated scalable
+              AWS infrastructure and Docker containerization, accelerating CI/CD release cycles by <strong>40%</strong>.
+            </p>
+            <ul class="timeline-tags">
+              <li>LLMs</li>
+              <li>OpenSearch</li>
+              <li>FastAPI</li>
+              <li>AWS</li>
+              <li>Docker</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="timeline-date">Mar 2025 — Aug 2025</span>
+            </div>
+            <h3 class="timeline-role">AI/ML Engineer</h3>
+            <p class="timeline-company">Pickabook</p>
+            <p class="timeline-text">
+              Built an end-to-end <strong>multi-modal Generative AI platform</strong> that crafts personalized
+              children's storybooks. Designed image processing architecture extracting facial features from
+              user-uploaded photos and integrated them into consistent cartoon illustrations. Fully automated the
+              e-commerce + print-on-demand workflow.
+            </p>
+            <ul class="timeline-tags">
+              <li>GenAI</li>
+              <li>Image Processing</li>
+              <li>Stable Diffusion</li>
+              <li>Python</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="timeline-date">Jan 2025 — Mar 2025</span>
+            </div>
+            <h3 class="timeline-role">AI Data Engineer / Consultant</h3>
+            <p class="timeline-company">Yuktii Venture</p>
+            <p class="timeline-text">
+              Built a <strong>predictive social media optimizer</strong> using ML + Generative AI + SQL. Automated
+              data scraping pipelines across YouTube, Instagram, and LinkedIn — reducing research effort by
+              <strong>70%</strong>. Created visualization dashboards that improved post engagement by
+              <strong>30%</strong>.
+            </p>
+            <ul class="timeline-tags">
+              <li>ML</li>
+              <li>GenAI</li>
+              <li>SQL</li>
+              <li>Scraping</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="timeline-date">Jun 2024 — Sep 2024</span>
+            </div>
+            <h3 class="timeline-role">LLM Engineer Intern</h3>
+            <p class="timeline-company">Bitcoding</p>
+            <p class="timeline-text">
+              Fine-tuned LLMs for improved natural language understanding. Developed intelligent applications
+              integrating <strong>LangChain</strong> and OpenAI APIs. Designed LSTM models for sequence prediction and
+              chatbots. Implemented <strong>RAG</strong> techniques for accurate, context-aware responses.
+            </p>
+            <ul class="timeline-tags">
+              <li>LangChain</li>
+              <li>OpenAI</li>
+              <li>LSTM</li>
+              <li>RAG</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="timeline-date">Mar 2024 — Apr 2024</span>
+            </div>
+            <h3 class="timeline-role">Machine Learning Intern</h3>
+            <p class="timeline-company">Mentorness</p>
+            <p class="timeline-text">
+              Spearheaded ML projects optimizing predictive models. Worked extensively on data cleaning, feature
+              engineering, and visualization. Experimented with multiple algorithms to develop tailored solutions
+              for unique datasets.
+            </p>
+            <ul class="timeline-tags">
+              <li>scikit-learn</li>
+              <li>Pandas</li>
+              <li>Feature Eng.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="timeline-date">Dec 2022 — Mar 2023</span>
+            </div>
+            <h3 class="timeline-role">Web Development Intern</h3>
+            <p class="timeline-company">Tritone Music</p>
+            <p class="timeline-text">
+              Built dynamic, engaging web experiences using <strong>React.js</strong>. Collaborated with the team to
+              streamline workflows and ship intuitive interfaces in a fast-paced environment.
+            </p>
+            <ul class="timeline-tags">
+              <li>React</li>
+              <li>JavaScript</li>
+              <li>UI/UX</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Education -->
+      <div class="education-block">
+        <h3 class="education-title reveal">
+          <span class="education-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+              <path d="M6 12v5c3 3 9 3 12 0v-5" />
+            </svg>
+          </span>
+          Education
+        </h3>
+
+        <div class="education-grid">
+          <div class="edu-card reveal" data-tilt>
+            <span class="edu-year">2021 — 2025</span>
+            <h4 class="edu-degree">B.Tech in Computer Science Engineering</h4>
+            <p class="edu-spec">Specialization: AI &amp; Machine Learning</p>
+            <p class="edu-school">Parul Institute of Technology, Vadodara</p>
+            <span class="edu-grade">CGPA · 7.6</span>
+          </div>
+
+          <div class="edu-card reveal" data-tilt>
+            <span class="edu-year">2020 — 2021</span>
+            <h4 class="edu-degree">Higher Secondary (Science)</h4>
+            <p class="edu-school">AB Higher Sec. School, Navsari</p>
+            <span class="edu-grade">72%</span>
+          </div>
+
+          <div class="edu-card reveal" data-tilt>
+            <span class="edu-year">2018 — 2019</span>
+            <h4 class="edu-degree">Secondary (10th Grade)</h4>
+            <p class="edu-school">Neelkanth Higher Sec. School, Navsari</p>
+            <span class="edu-grade">70%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         PROJECTS SECTION
+    ============================================= -->
+    <section class="projects" id="projects">
+      <div class="section-header">
+        <div class="section-num">04 / SELECTED WORK</div>
+        <h2 class="section-title">
+          <span class="reveal-text"><span>Things I've</span></span>
+          <span class="reveal-text"><span><em>built &amp; shipped</em></span></span>
+        </h2>
+      </div>
+
+      <div class="projects-filter reveal">
+        <button class="filter-btn active" data-filter="all" data-cursor="link">
+          <span>All</span>
+          <span class="filter-count">16</span>
+        </button>
+        <button class="filter-btn" data-filter="ai-platform" data-cursor="link">
+          <span>AI Platform</span>
+        </button>
+        <button class="filter-btn" data-filter="genai" data-cursor="link">
+          <span>GenAI</span>
+        </button>
+        <button class="filter-btn" data-filter="machine-learning" data-cursor="link">
+          <span>Machine Learning</span>
+        </button>
+        <button class="filter-btn" data-filter="web" data-cursor="link">
+          <span>Web</span>
+        </button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+
+        <article class="project-card reveal" data-category="ai-platform" data-tilt id="sitaProjectCard">
+          <div data-cursor="view" style="cursor:pointer"
+            onclick="document.getElementById('sitaModal').classList.add('active'); document.body.style.overflow='hidden';">
+            <div class="project-img">
+              <img src="./assets/images/sita.jpg" alt="SITA AI Platform" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View Modules</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">AI Platform · Featured</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">SITA — AI Procurement Platform</h3>
+              <p class="project-desc">Multi-agent enterprise AI platform with 8+ modules powering procurement
+                automation across multiple domains.</p>
+              <ul class="project-stack">
+                <li>FastAPI</li>
+                <li>LLMs</li>
+                <li>OpenSearch</li>
+                <li>Docker</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-category="genai" data-tilt>
+          <a href="https://github.com/Jay-Thoriya/PickaBookApp" data-cursor="view">
+            <div class="project-img">
+              <img src="./assets/images/pickabook.jpg" alt="Pickabook" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">GenAI · Featured</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">Pickabook — AI Storybook Generator</h3>
+              <p class="project-desc">Multi-modal generative platform crafting personalized children's storybooks
+                with face-based illustration consistency.</p>
+              <ul class="project-stack">
+                <li>Python</li>
+                <li>GenAI</li>
+                <li>Image Processing</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal" data-category="machine-learning" data-tilt>
+          <a href="https://github.com/Jay-Thoriya/Movie_recommendation_systems" target="_blank"
+            rel="noopener noreferrer" data-cursor="view">
+            <div class="project-img">
+              <img src="./assets/images/Netflix-Background.png" alt="Movie Recommendation System" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">Machine Learning</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">Movie Recommendation System</h3>
+              <p class="project-desc">Content + collaborative filtering recommender that surfaces personalized movie
+                picks based on user signals.</p>
+              <ul class="project-stack">
+                <li>scikit-learn</li>
+                <li>Pandas</li>
+                <li>NumPy</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal" data-category="genai" data-tilt>
+          <a href="https://github.com/Jay-Thoriya/python-pdf" target="_blank" rel="noopener noreferrer"
+            data-cursor="view">
+            <div class="project-img">
+              <img src="./assets/images/chat_bot.png" alt="RAG Chatbot" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">GenAI</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">RAG Chatbot</h3>
+              <p class="project-desc">Retrieval-augmented chatbot answering domain questions with grounded,
+                context-aware responses.</p>
+              <ul class="project-stack">
+                <li>LangChain</li>
+                <li>OpenAI</li>
+                <li>Vector DB</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal" data-category="genai" data-tilt>
+          <a href="https://github.com/Jay-Thoriya/code-suggestion-chatbot" target="_blank" rel="noopener noreferrer"
+            data-cursor="view">
+            <div class="project-img">
+              <img src="./assets/images/code_chatbot.png" alt="Code Suggestion Chatbot" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">GenAI</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">Code Suggestion Chatbot</h3>
+              <p class="project-desc">Developer-focused assistant generating code completions and explanations across
+                multiple languages.</p>
+              <ul class="project-stack">
+                <li>LLMs</li>
+                <li>Python</li>
+                <li>Streamlit</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal" data-category="genai" data-tilt>
+          <a href="https://github.com/Jay-Thoriya/pdf-chat" target="_blank" rel="noopener noreferrer"
+            data-cursor="view">
+            <div class="project-img">
+              <img src="./assets/images/PDF_chatbot.png" alt="PDF Summarizer" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">GenAI</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">PDF Summarizer Chatbot</h3>
+              <p class="project-desc">Upload-and-chat application that summarizes PDFs and answers grounded questions
+                from the document context.</p>
+              <ul class="project-stack">
+                <li>LangChain</li>
+                <li>RAG</li>
+                <li>FAISS</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal" data-category="machine-learning" data-tilt>
+          <a href="https://github.com/Jay-Thoriya/IntelliVision" target="_blank" rel="noopener noreferrer"
+            data-cursor="view">
+            <div class="project-img">
+              <img src="./assets/images/image.png" alt="IntelliVision" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">Computer Vision</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">IntelliVision</h3>
+              <p class="project-desc">Computer vision platform for object detection, classification, and visual
+                analytics tasks.</p>
+              <ul class="project-stack">
+                <li>OpenCV</li>
+                <li>PyTorch</li>
+                <li>YOLO</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal" data-category="machine-learning" data-tilt>
+          <a href="https://github.com/Jay-Thoriya/Classify-fraud-and-non-fraud-transactions" target="_blank"
+            rel="noopener noreferrer" data-cursor="view">
+            <div class="project-img">
+              <img src="./assets/images/fraud.png" alt="Fraud Classifier" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">Machine Learning</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">Fraud Transaction Classifier</h3>
+              <p class="project-desc">Binary classification model identifying fraudulent transactions on imbalanced
+                financial data.</p>
+              <ul class="project-stack">
+                <li>XGBoost</li>
+                <li>SMOTE</li>
+                <li>scikit-learn</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal" data-category="machine-learning" data-tilt>
+          <a href="https://github.com/Jay-Thoriya/House-Price-Prediction" target="_blank" rel="noopener noreferrer"
+            data-cursor="view">
+            <div class="project-img">
+              <img src="./assets/images/house_price.png" alt="House Price Prediction" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">Machine Learning</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">House Price Prediction</h3>
+              <p class="project-desc">Regression pipeline predicting housing prices from feature-engineered tabular
+                data.</p>
+              <ul class="project-stack">
+                <li>Regression</li>
+                <li>Pandas</li>
+                <li>scikit-learn</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal" data-category="machine-learning" data-tilt>
+          <a href="https://github.com/Jay-Thoriya/Credit-card-Prediction" target="_blank" rel="noopener noreferrer"
+            data-cursor="view">
+            <div class="project-img">
+              <img src="./assets/images/Credit_Card.png" alt="Credit Card Prediction" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">Machine Learning</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">Credit Card Prediction</h3>
+              <p class="project-desc">Predictive model for credit card approval and risk scoring on customer feature
+                profiles.</p>
+              <ul class="project-stack">
+                <li>Classification</li>
+                <li>EDA</li>
+                <li>Python</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal" data-category="machine-learning" data-tilt>
+          <a href="https://github.com/Jay-Thoriya/Furniture-Sales-Forecasting" target="_blank" rel="noopener noreferrer"
+            data-cursor="view">
+            <div class="project-img">
+              <img src="./assets/images/Furniture.png" alt="Furniture Sales Forecasting" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">Time Series</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">Furniture Sales Forecasting</h3>
+              <p class="project-desc">Time-series forecasting model predicting future furniture sales from historical
+                trends.</p>
+              <ul class="project-stack">
+                <li>ARIMA</li>
+                <li>Prophet</li>
+                <li>Pandas</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal" data-category="web" data-tilt>
+          <a href="https://github.com/Jay-Thoriya/Real_estate_website" target="_blank" rel="noopener noreferrer"
+            data-cursor="view">
+            <div class="project-img">
+              <img src="./assets/images/project-3.jpg" alt="Real Estate Website" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">Web Development</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">Real Estate Website</h3>
+              <p class="project-desc">Property listing site with search, filtering, and modern responsive UI.</p>
+              <ul class="project-stack">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal" data-category="web" data-tilt>
+          <a href="https://github.com/Jay-Thoriya/health-care-system" target="_blank" rel="noopener noreferrer"
+            data-cursor="view">
+            <div class="project-img">
+              <img src="./assets/images/health.png" alt="Healthcare System" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">Web Development</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">Healthcare System</h3>
+              <p class="project-desc">Web application for patient records, appointments, and healthcare workflows.</p>
+              <ul class="project-stack">
+                <li>Web</li>
+                <li>Database</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal" data-category="web" data-tilt>
+          <a href="https://github.com/Jay-Thoriya/carpoint-automobile-react.js" target="_blank"
+            rel="noopener noreferrer" data-cursor="view">
+            <div class="project-img">
+              <img src="./assets/images/carpoint.png" alt="Carpoint" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">Web Development</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">Carpoint Automobile</h3>
+              <p class="project-desc">React-based automotive showcase site with dynamic catalog and routing.</p>
+              <ul class="project-stack">
+                <li>React</li>
+                <li>JavaScript</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal" data-category="web" data-tilt>
+          <a href="https://github.com/Jay-Thoriya/Car-Game" target="_blank" rel="noopener noreferrer"
+            data-cursor="view">
+            <div class="project-img">
+              <img src="./assets/images/car_game.png" alt="Car Game" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">Web Development</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">Car Racing Game</h3>
+              <p class="project-desc">Browser-based car racing game built with HTML, CSS, and JavaScript.</p>
+              <ul class="project-stack">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JS</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card reveal" data-category="web" data-tilt>
+          <a href="https://github.com/Jay-Thoriya/Candy-Crush-Game" target="_blank" rel="noopener noreferrer"
+            data-cursor="view">
+            <div class="project-img">
+              <img src="./assets/images/candy.png" alt="Candy Crush" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-view">View</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-cat">Web Development</span>
+                <span class="project-arrow">→</span>
+              </div>
+              <h3 class="project-title">Candy Crush Game</h3>
+              <p class="project-desc">Match-three puzzle game clone with score tracking and animations.</p>
+              <ul class="project-stack">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JS</li>
+              </ul>
+            </div>
+          </a>
+        </article>
+
+      </div>
+
+      <div class="projects-cta reveal">
+        <p>Curious about the rest? Check out everything on GitHub.</p>
+        <a href="https://github.com/Jay-Thoriya" target="_blank" rel="noopener noreferrer" class="btn btn-ghost"
+          data-cursor="link" data-magnetic>
+          <span class="btn-text">All Repositories</span>
+          <span class="btn-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 17L17 7M7 7h10v10" />
+            </svg>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============================================
+         CONTACT SECTION
+    ============================================= -->
+    <section class="contact" id="contact">
+      <div class="section-header">
+        <div class="section-num">05 / GET IN TOUCH</div>
+        <h2 class="section-title">
+          <span class="reveal-text"><span>Let's build</span></span>
+          <span class="reveal-text"><span>something <em>real.</em></span></span>
+        </h2>
+      </div>
+
+      <div class="contact-grid">
+
+        <div class="contact-info reveal">
+          <p class="contact-lead">
+            Got an AI/ML project, an interesting problem, or just want to chat about LLMs and RAG architectures?
+            My inbox is open.
+          </p>
+
+          <ul class="contact-list">
+            <li class="contact-item" data-cursor="link">
+              <a href="mailto:jaythoriya8779@gmail.com">
+                <span class="contact-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                </span>
+                <span class="contact-content">
+                  <span class="contact-label">Email</span>
+                  <span class="contact-value">jaythoriya8779@gmail.com</span>
+                </span>
+              </a>
+            </li>
+
+            <li class="contact-item" data-cursor="link">
+              <a href="tel:+918155091603">
+                <span class="contact-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path
+                      d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                  </svg>
+                </span>
+                <span class="contact-content">
+                  <span class="contact-label">Phone</span>
+                  <span class="contact-value">+91 8155091603</span>
+                </span>
+              </a>
+            </li>
+
+            <li class="contact-item" data-cursor="link">
+              <a href="#" onclick="return false">
+                <span class="contact-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </span>
+                <span class="contact-content">
+                  <span class="contact-label">Location</span>
+                  <span class="contact-value">Ahmedabad, Gujarat, IN</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="contact-socials">
+            <p class="contact-socials-label">/ social</p>
+            <div class="contact-socials-list">
+              <a href="https://github.com/Jay-Thoriya" target="_blank" rel="noopener noreferrer" data-cursor="link">
+                GitHub
+              </a>
+              <a href="https://www.linkedin.com/in/jay-thoriya/" target="_blank" rel="noopener noreferrer"
+                data-cursor="link">
+                LinkedIn
+              </a>
+              <a href="https://www.instagram.com/lost_in_earth_74?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                target="_blank" rel="noopener noreferrer" data-cursor="link">
+                Instagram
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm">
+          <!-- Web3Forms config -->
+          <input type="hidden" name="access_key" value="242114d1-76a0-4fc0-81d4-9f18796d4035">
+          <input type="hidden" name="subject" value="New Portfolio Contact — Jay Thoriya">
+          <input type="hidden" name="from_name" value="Portfolio Contact Form">
+          <input type="checkbox" name="botcheck" style="display:none;">
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="cf-name">Name</label>
+              <input type="text" id="cf-name" name="name" required placeholder="Your full name">
+              <span class="form-line"></span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="cf-email">Email</label>
+              <input type="email" id="cf-email" name="email" required placeholder="you@domain.com">
+              <span class="form-line"></span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="cf-subject">Subject</label>
+              <input type="text" id="cf-subject" name="subject" placeholder="What's this about?">
+              <span class="form-line"></span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" name="message" required rows="4"
+                placeholder="Tell me about your project..."></textarea>
+              <span class="form-line"></span>
+            </div>
+          </div>
+
+          <button type="submit" class="form-submit" data-cursor="link" data-magnetic>
+            <span class="form-submit-text">Transmit Message</span>
+            <span class="form-submit-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+            </span>
+          </button>
+
+          <div class="form-status" id="formStatus"></div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+    ============================================= -->
+    <footer class="footer">
+      <div class="footer-top">
+        <a href="#hero" class="footer-back-top" data-cursor="link">
+          <span>BACK TO TOP</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="footer-main">
+        <div class="footer-brand">
+          <h3>Jay Thoriya</h3>
+          <p>Lead AI/ML Engineer · Building intelligent systems with code.</p>
+        </div>
+
+        <div class="footer-grid">
+          <div class="footer-col">
+            <p class="footer-col-title">Navigate</p>
+            <a href="#about" data-cursor="link">About</a>
+            <a href="#skills" data-cursor="link">Skills</a>
+            <a href="#projects" data-cursor="link">Projects</a>
+            <a href="#contact" data-cursor="link">Contact</a>
+          </div>
+          <div class="footer-col">
+            <p class="footer-col-title">Connect</p>
+            <a href="https://github.com/Jay-Thoriya" target="_blank" rel="noopener noreferrer"
+              data-cursor="link">GitHub</a>
+            <a href="https://www.linkedin.com/in/jay-thoriya/" target="_blank" rel="noopener noreferrer"
+              data-cursor="link">LinkedIn</a>
+            <a href="https://www.instagram.com/lost_in_earth_74?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+              target="_blank" rel="noopener noreferrer" data-cursor="link">Instagram</a>
+            <a href="mailto:jaythoriya8779@gmail.com" data-cursor="link">Email</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="currentYear">2026</span> Jay Thoriya · Crafted with <span class="heart">▮</span> code &amp;
+          coffee.</p>
+        <p class="footer-tag">// neural net trained on caffeine</p>
+      </div>
+    </footer>
+
+
+    <!-- ============================================
+         SITA MODULES MODAL
+    ============================================= -->
+    <div class="sita-modal-overlay" id="sitaModal">
+      <div class="sita-modal">
+        <button class="sita-modal-close" id="sitaModalClose"
+          onclick="document.getElementById('sitaModal').classList.remove('active'); document.body.style.overflow='';">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
         </button>
 
-      </div>
-
-      <div class="sidebar-info_more">
-
-        <div class="separator"></div>
-
-        <ul class="contacts-list">
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Email</p>
-
-              <a href="mailto:xyz@gmail.com" class="contact-link">jaythoriya8779@gmail.com</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="phone-portrait-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Phone</p>
-
-              <a href="tel:+12133522795" class="contact-link">+91 8155091603</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Birthday</p>
-
-              <time datetime="1982-06-23">5 octember, 2003</time>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Location</p>
-
-              <address>Ahmedabad, Gujarat, India</address>
-            </div>
-
-          </li>
-
-        </ul>
-
-        <div class="separator"></div>
-
-        <ul class="social-list">
-
-          <li class="social-item">
-            <a href="https://github.com/Jay-Thoriya" target="_blank" rel="noopener noreferrer" class="social-link">
-              <ion-icon name="logo-github"></ion-icon>
-            </a>
-          </li>
-
-          <li class="social-item">
-            <a href="https://www.linkedin.com/in/jay-thoriya/" target="_blank" rel="noopener noreferrer"
-              class="social-link">
-              <ion-icon name="logo-linkedin"></ion-icon>
-            </a>
-          </li>
-
-          <li class="social-item">
-            <a href="https://www.instagram.com/lost_in_earth_74?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
-              target="_blank" rel="noopener noreferrer" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-
-    </aside>
-
-
-
-
-
-    <!--
-      - #main-content
-    -->
-
-    <div class="main-content">
-
-      <!--
-        - #NAVBAR
-      -->
-
-      <nav class="navbar">
-
-        <ul class="navbar-list">
-
-          <li class="navbar-item">
-            <button class="navbar-link  active" data-nav-link>About</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Resume</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Portfolio</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Blog</button>
-          </li>
-
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Contact</button>
-          </li>
-
-        </ul>
-
-      </nav>
-
-
-
-
-
-      <!--
-        - #ABOUT
-      -->
-
-      <article class="about  active" data-page="about">
-
-        <header>
-          <h2 class="h2 article-title">About me</h2>
-        </header>
-
-        <section class="about-text">
-          <p>
-            Innovative Lead AI/ML Engineer experienced in orchestrating scalable, multi-agent AI platforms and cloud
-            infrastructure. Passionate about transforming complex business requirements into automated, user-centric AI
-            products. Specializing in Generative AI, Large Language Models (LLMs), and intelligent document processing,
-            I excel at delivering end-to-end architectures from scratch. I am eager to contribute to cutting-edge
-            projects in a dynamic environment that encourages continuous learning and professional growth.
-          </p>
-        </section>
-
-
-        <!--
-          - service
-        -->
-
-        <section class="service">
-
-          <h3 class="h3 service-title">What i'm doing</h3>
-
-          <ul class="service-list">
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-design.svg
-                " alt="design icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Generative AI & LLMs</h4>
-
-                <p class="service-item-text">
-                  Building multi-agent AI platforms and LLM-powered solutions for enterprise-grade automation and
-                  intelligent document processing.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-app.svg" alt="mobile app icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Machine Learning & Deep Learning</h4>
-
-                <p class="service-item-text">
-                  Designing advanced ML/DL pipelines for OCR, NLP, computer vision, and predictive analytics at scale.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-dev.svg" alt="Web development icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Cloud Architecture & DevOps</h4>
-
-                <p class="service-item-text">
-                  Managing scalable AWS infrastructure, containerized environments with Docker, and CI/CD pipelines for
-                  zero-downtime deployments.
-                </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-photo.svg" alt="camera icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Intelligent Document Processing</h4>
-
-                <p class="service-item-text">
-                  Automating high-volume document extraction and analysis with 98%+ precision using OCR and ML
-                  pipelines.
-                </p>
-              </div>
-
-            </li>
-
-          </ul>
-
-        </section>
-
-
-        <!-- testimonials -->
-
-        <section class="testimonials">
-
-        </section>
-
-
-        <!--
-          - testimonials modal
-        -->
-
-        <div class="modal-container" data-modal-container>
-
-          <div class="overlay" data-overlay></div>
-
-          <section class="testimonials-modal">
-
-            <button class="modal-close-btn" data-modal-close-btn>
-              <ion-icon name="close-outline"></ion-icon>
-            </button>
-
-          </section>
-
+        <div class="sita-modal-header">
+          <span class="sita-modal-badge">AI PLATFORM · 8 MODULES</span>
+          <h2 class="sita-modal-title">SITA — AI Procurement Platform</h2>
+          <p class="sita-modal-desc">SITA is an AI-powered procurement assistant enabling business users to interact
+            with ERP procurement databases via natural language. Built a suite of 8 AI modules covering the full
+            procurement lifecycle.</p>
         </div>
 
+        <div class="sita-modules-grid">
 
-        <!--
-          - clients
-        -->
-
-
-      </article>
-
-
-
-      <!--
-        - #RESUME
-      -->
-
-      <article class="resume" data-page="resume">
-
-        <header>
-          <h2 class="h2 article-title">Resume</h2>
-        </header>
-
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
+          <!-- Module 1 -->
+          <div class="sita-module-card">
+            <div class="sita-module-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                <path d="M8 9h8M8 13h4" />
+              </svg>
             </div>
-
-            <h3 class="h3">Education</h3>
-          </div>
-
-          <ol class="timeline-list">
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Parul Institute Of Technology, Vadodara </h4>
-
-              <span>2021 — 2025</span>
-
-              <p class="timeline-text">
-                Pursuing Bachelor's degree in Computer Science and Engineering with specialization in Artificial
-                Intelligence and Machine Learning, maintaining 7.6 CGPA.
-                Actively involved in academic projects, hackathons, and collaborative team activities to enhance
-                practical skills and real-world experience.
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">AB Higher Sec. School, Navsari</h4>
-
-              <span>2020 — 2021</span>
-
-              <p class="timeline-text">
-                Graduated with a strong foundation in science, securing 72% marks. Developed an interest in technology
-                and problem-solving through coursework and extracurricular activities.
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Neelkanth Higher Sec. School, Navsari</h4>
-
-              <span>2018 — 2019</span>
-
-              <p class="timeline-text">
-                Completed secondary education with 70%, focusing on mathematics and science. Engaged in school-level
-                competitions and activities that encouraged curiosity and teamwork.
-              </p>
-
-            </li>
-
-          </ol>
-
-        </section>
-
-        <section class="timeline">
-
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
-
-            <h3 class="h3">Experience</h3>
-          </div>
-
-          <ol class="timeline-list">
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Lead AI/ML Engineer</h4>
-
-              <span>Safalsoftcom | Aug, 2025 — Present</span>
-
-              <p class="timeline-text">
-                As a Lead AI/ML Engineer, I architected and deployed an ecosystem of 8+ enterprise AI modules for a
-                multi-domain procurement platform. By leveraging Large Language Models (LLMs), OpenSearch vector
-                databases, and advanced OCR pipelines, I automated end-to-end workflows and reduced manual intervention
-                by up to 75%. Additionally, I orchestrated scalable AWS cloud infrastructure and Docker
-                containerization, accelerating CI/CD release cycles by 40% and ensuring secure, zero-downtime
-                deployments.
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">AI/ML Engineer</h4>
-
-              <span>Pickabook | March, 2025 — Aug, 2025</span>
-
-              <p class="timeline-text">
-                At Pickabook, I developed an end-to-end, multi-modal Generative AI platform that dynamically crafts
-                personalized children's storybooks. I designed an advanced image processing architecture to extract
-                facial features from user-uploaded family photos and integrate them into consistent cartoon
-                illustrations. Furthermore, I fully automated the e-commerce and print-on-demand fulfillment workflow,
-                instantly compiling user-editable PDFs and dispatching them to external printing vendors upon secure
-                checkout.
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">AI Data Engineer / Consultant</h4>
-
-              <span>Yuktii Venture | Jan, 2025 — March, 2025</span>
-
-              <p class="timeline-text">
-                At Yuktii Venture, I built a predictive social media optimizer and analytics engine utilizing machine
-                learning, Generative AI, and SQL. I automated high-volume data scraping pipelines across platforms like
-                YouTube, Instagram, and LinkedIn, reducing manual research efforts by 70%. To empower data-driven
-                decisions, I created dynamic visualization dashboards to track KPIs and forecast audience behavior,
-                successfully improving post engagement rates by 30%.
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">LLM Engineer Intern</h4>
-
-              <span>Bitcoding | Jun, 2024 — Sept, 2024</span>
-
-              <p class="timeline-text">
-                At Bitcoding, I focused on enhancing AI's capabilities by fine-tuning large language models for improved
-                natural language understanding and generation. I developed intelligent applications by integrating
-                LangChain and OpenAI APIs, while also designing LSTM models for sequence prediction and chatbot
-                functionality. By implementing Retrieval-Augmented Generation (RAG) techniques, I ensured the AI systems
-                delivered highly relevant and accurate responses.
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Machine Learning Intern</h4>
-
-              <span>Mentorness | March, 2024 — April, 2024</span>
-
-              <p class="timeline-text">
-                During my time at Mentorness, I spearheaded machine learning projects that optimized predictive models
-                and enabled insightful decision-making. I worked extensively with data, employing advanced cleaning,
-                feature engineering, and visualization techniques to enhance model performance. Experimenting with
-                various algorithms, I developed solutions tailored to unique datasets, driving impactful results in
-                machine learning applications.
-              </p>
-
-            </li>
-
-            <li class="timeline-item">
-
-              <h4 class="h4 timeline-item-title">Web Development Intern</h4>
-
-              <span>Tritone Music | Dec, 2022 — March, 2023</span>
-
-              <p class="timeline-text">
-                As a web development intern at Tritone Music, I specialized in creating dynamic and engaging web
-                experiences using React.js. I collaborated with a talented team to streamline workflows, improve design
-                processes, and deliver innovative projects in a fast-paced environment. My work focused on building
-                intuitive user interfaces that enhanced interactivity and provided seamless web experiences.
-              </p>
-
-            </li>
-
-          </ol>
-
-        </section>
-
-        <section class="skill">
-
-          <h3 class="h3 skills-title">My skills</h3>
-
-          <ul class="skills-list content-card">
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">LLMs & Generative AI</h5>
-                <data value="95">95%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 95%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Machine Learning & Deep Learning</h5>
-                <data value="90">90%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 90%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">Python & FastAPI</h5>
-                <data value="92">92%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 92%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">NLP & Computer Vision</h5>
-                <data value="88">88%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 88%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">RAG Pipelines & LangChain</h5>
-                <data value="90">90%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 90%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">PyTorch & TensorFlow</h5>
-                <data value="85">85%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 85%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">AWS (EC2, S3, Bedrock) & Docker</h5>
-                <data value="87">87%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 87%;"></div>
-              </div>
-
-            </li>
-
-            <li class="skills-item">
-
-              <div class="title-wrapper">
-                <h5 class="h5">OpenSearch & SQL</h5>
-                <data value="82">82%</data>
-              </div>
-
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 82%;"></div>
-              </div>
-
-            </li>
-
-          </ul>
-
-        </section>
-
-      </article>
-
-
-
-
-      <!--
-        - #PORTFOLIO
-      -->
-
-      <article class="portfolio" data-page="portfolio">
-
-        <header>
-          <h2 class="h2 article-title">Portfolio</h2>
-        </header>
-
-        <section class="projects">
-
-          <ul class="filter-list">
-
-            <li class="filter-item">
-              <button class="active" data-filter-btn>All</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>AI Platform</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>GenAI</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Machine Learning</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Web development</button>
-            </li>
-
-          </ul>
-
-          <div class="filter-select-box">
-
-            <button class="filter-select" data-select>
-
-              <div class="select-value" data-selecct-value>Select category</div>
-
-              <div class="select-icon">
-                <ion-icon name="chevron-down"></ion-icon>
-              </div>
-
-            </button>
-
-            <ul class="select-list">
-
-              <li class="select-item">
-                <button data-select-item>All</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>AI Platform</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>GenAI</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Machine Learning</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Web development</button>
-              </li>
-
+            <h3 class="sita-module-title">SITA AI Procurement Assistant (NL2SQL)</h3>
+            <p class="sita-module-desc">Designed a multi-stage AI pipeline — intent interpretation → schema mapping →
+              SQL generation — enabling non-technical users to query ERP data in plain English and receive structured
+              tables and analytics.</p>
+            <ul class="sita-module-tags">
+              <li>NLP</li>
+              <li>SQL Gen</li>
+              <li>ERP</li>
+              <li>OpenAI</li>
             </ul>
-
           </div>
 
-          <ul class="project-list">
-
-            <li class="project-item  active" data-filter-item data-category="ai platform">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/sita.jpg" alt="SITA AI Platform" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">SITA - AI-Powered Procurement Platform</h3>
-
-                <p class="project-category">Python, FastAPI, OpenSearch, LLMs, Docker</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="genai">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/pickabook.jpg" alt="Pickabook AI" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Pickabook - AI Storybook Generator</h3>
-
-                <p class="project-category">Python, GenAI, Image Processing</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="machine learning">
-              <a href="https://github.com/Jay-Thoriya/Movie_recommendation_systems" target="_blank"
-                rel="noopener noreferrer">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Netflix-Background.png" alt="finance" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Movie recommendation systems</h3>
-
-                <p class="project-category">Machine Learning</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="genai">
-              <a href="https://github.com/Jay-Thoriya/python-pdf" target="_blank" rel="noopener noreferrer">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/chat_bot.png" alt="orizon" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">RAG chatbot</h3>
-
-                <p class="project-category">GenAI</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="https://github.com/Jay-Thoriya/Real_estate_website" target="_blank" rel="noopener noreferrer">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-3.jpg" alt="fundo" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Real estate website</h3>
-
-                <p class="project-category">Web development</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="genai">
-              <a href="https://github.com/Jay-Thoriya/code-suggestion-chatbot" target="_blank"
-                rel="noopener noreferrer">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/code_chatbot.png" alt="brawlhalla" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">code suggestion chatbot</h3>
-
-                <p class="project-category">GenAI</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="machine learning">
-              <a href="https://github.com/Jay-Thoriya/IntelliVision" target="_blank" rel="noopener noreferrer">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/image.png" alt="brawlhalla" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">IntelliVision</h3>
-
-                <p class="project-category">Machine Learning</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="https://github.com/Jay-Thoriya/Car-Game" target="_blank" rel="noopener noreferrer">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/car_game.png" alt="dsm." loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Car receding Game</h3>
-
-                <p class="project-category">Web Development</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="machine learning">
-              <a href="https://github.com/Jay-Thoriya/Classify-fraud-and-non-fraud-transactions" target="_blank"
-                rel="noopener noreferrer">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/fraud.png" alt="metaspark" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Classify fraud and non-fraud transactions</h3>
-
-                <p class="project-category">Machine Learning</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="hhttps://github.com/Jay-Thoriya/health-care-system" target="_blank" rel="noopener noreferrer">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/health.png" alt="summary" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">health care system</h3>
-
-                <p class="project-category">Web development</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="machine learning">
-              <a href="hhttps://github.com/Jay-Thoriya/House-Price-Prediction" target="_blank"
-                rel="noopener noreferrer">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/house_price.png" alt="task manager" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">House Price Prediction</h3>
-
-                <p class="project-category">Machine Learning</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="genai">
-              <a href="https://github.com/Jay-Thoriya/pdf-chat" target="_blank" rel="noopener noreferrer">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/PDF_chatbot.png" alt="arrival" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">PDF summarizer chatbot</h3>
-
-                <p class="project-category">GenAI</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="https://github.com/Jay-Thoriya/Candy-Crush-Game" target="_blank" rel="noopener noreferrer">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/candy.png" alt="arrival" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Candy Crush Game</h3>
-
-                <p class="project-category">Web Development</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="machine learning">
-              <a href="https://github.com/Jay-Thoriya/Credit-card-Prediction" target="_blank" rel="noopener noreferrer">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Credit_Card.png" alt="arrival" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Credit Card Prediction</h3>
-
-                <p class="project-category">Machine Learning</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="https://github.com/Jay-Thoriya/carpoint-automobile-react.js" target="_blank"
-                rel="noopener noreferrer">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/carpoint.png" alt="arrival" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">carpoint automobile</h3>
-
-                <p class="project-category">Web Development</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="machine learning">
-              <a href="https://github.com/Jay-Thoriya/Furniture-Sales-Forecasting" target="_blank"
-                rel="noopener noreferrer">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/Furniture.png" alt="arrival" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Furniture Sales Forecasting</h3>
-
-                <p class="project-category">Machine Learning</p>
-
-              </a>
-            </li>
-          </ul>
-
-        </section>
-
-      </article>
-
-      <!--
-        - #BLOG
-      -->
-
-      <article class="blog" data-page="blog">
-
-        <header>
-          <h2 class="h2 article-title">Blog</h2>
-        </header>
-
-        <section class="blog-posts">
-
-          <ul class="blog-posts-list">
-
-            <li class="blog-post-item">
-              <a href="https://machinelearingdotblog.wordpress.com/2024/11/26/how-data-science-is-changing-the-way-we-see-personalized-content/"
-                target="_blank" rel="noopener noreferrer">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-4.jpg" alt="UI interactions of the week" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Nov 26, 2024</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">DATA SCIENCE</h3>
-
-                  <p class="blog-text">
-                    How data science is changing the way we see presonalized content.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-          </ul>
-
-        </section>
-
-      </article>
-
-
-
-
-
-      <!--
-        - #CONTACT
-      -->
-
-      <article class="contact" data-page="contact">
-
-        <header>
-          <h2 class="h2 article-title">Contact</h2>
-        </header>
-
-        <section class="mapbox" data-mapbox>
-          <figure>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.622063988255!2d72.57136207520827!3d23.022505015416456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f658b!2sAhmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1772313218921!5m2!1sen!2sin"
-              width="400" height="300" loading="lazy"></iframe>
-          </figure>
-        </section>
-
-        <section class="contact-form">
-
-          <h3 class="h3 form-title">Contact Form</h3>
-
-          <form action="#" class="form" data-form>
-
-            <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+          <!-- Module 2 -->
+          <div class="sita-module-card">
+            <div class="sita-module-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
             </div>
+            <h3 class="sita-module-title">Supplier Onboarding Automation</h3>
+            <p class="sita-module-desc">OCR pipelines to extract GSTIN, PAN, and MSME registration identifiers from
+              scanned documents, with validation rules and structured ERP-ready output — eliminating manual data entry.
+            </p>
+            <ul class="sita-module-tags">
+              <li>OCR</li>
+              <li>Regex</li>
+              <li>Document AI</li>
+            </ul>
+          </div>
 
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+          <!-- Module 3 -->
+          <div class="sita-module-card">
+            <div class="sita-module-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <polyline points="10 9 9 9 8 9" />
+              </svg>
+            </div>
+            <h3 class="sita-module-title">Invoice Processing & Financial Extraction</h3>
+            <p class="sita-module-desc">Parsed Indian tax invoices to extract buyer/seller GSTINs, line-item tables,
+              product descriptions, quantities, and totals. Built validation pipelines comparing computed vs printed
+              totals.</p>
+            <ul class="sita-module-tags">
+              <li>Document Parsing</li>
+              <li>OCR</li>
+              <li>Finance AI</li>
+            </ul>
+          </div>
 
-            <button class="form-btn" type="submit" disabled data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
+          <!-- Module 4 -->
+          <div class="sita-module-card">
+            <div class="sita-module-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+            </div>
+            <h3 class="sita-module-title">Technical Parameter Recommendation Engine</h3>
+            <p class="sita-module-desc">AI engineering assistant that analyses material descriptions in procurement
+              events and recommends relevant technical specifications (load capacity, material grade, certifications) to
+              standardise RFQs.</p>
+            <ul class="sita-module-tags">
+              <li>Classification</li>
+              <li>Recommendation</li>
+              <li>NLP</li>
+            </ul>
+          </div>
 
-          </form>
+          <!-- Module 5 -->
+          <div class="sita-module-card">
+            <div class="sita-module-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 20V10M6 20V4M18 20v-6" />
+              </svg>
+            </div>
+            <h3 class="sita-module-title">Vendor Bid Analysis & Award Recommendation</h3>
+            <p class="sita-module-desc">Evaluated vendor bids with net-landed-cost calculations, currency normalisation,
+              and L1/L2/L3 ranking logic. Integrated techno-commercial compliance checks for data-driven supplier
+              selection.</p>
+            <ul class="sita-module-tags">
+              <li>Bid Analysis</li>
+              <li>Ranking</li>
+              <li>Finance</li>
+            </ul>
+          </div>
 
-        </section>
+          <!-- Module 6 -->
+          <div class="sita-module-card">
+            <div class="sita-module-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                <line x1="8" y1="11" x2="14" y2="11" />
+                <line x1="11" y1="8" x2="11" y2="14" />
+              </svg>
+            </div>
+            <h3 class="sita-module-title">Supplier Recommendation Engine</h3>
+            <p class="sita-module-desc">Semantic matching models linking materials with past procurement records using
+              vector similarity search. Scoring algorithms incorporating participation history, performance metrics, and
+              compliance data.</p>
+            <ul class="sita-module-tags">
+              <li>Vector Search</li>
+              <li>Semantic Matching</li>
+              <li>ML</li>
+            </ul>
+          </div>
 
-      </article>
+          <!-- Module 7 -->
+          <div class="sita-module-card">
+            <div class="sita-module-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h3 class="sita-module-title">Terms & Conditions Suggestion System</h3>
+            <p class="sita-module-desc">Automatically generates commercial T&C clauses for procurement events based on
+              item/service type — differentiating goods vs services, with configurable templates for procurement teams.
+            </p>
+            <ul class="sita-module-tags">
+              <li>LLM</li>
+              <li>Template Engine</li>
+              <li>Procurement</li>
+            </ul>
+          </div>
 
+          <!-- Module 8 -->
+          <div class="sita-module-card">
+            <div class="sita-module-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+            </div>
+            <h3 class="sita-module-title">Procurement Risk Detection & Audit System</h3>
+            <p class="sita-module-desc">Compliance monitoring system detecting irregular patterns (common bidder IPs,
+              low competition). Gathers ERP evidence and generates structured JSON audit questions for procurement
+              governance.</p>
+            <ul class="sita-module-tags">
+              <li>Risk Detection</li>
+              <li>Audit AI</li>
+              <li>Compliance</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
     </div>
 
   </main>
 
+  <!-- ============================================
+       LIBRARIES (CDN)
+  ============================================= -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
 
-
-
-
-
-  <!--
-    - custom js link
-  -->
+  <!-- Custom JS -->
   <script src="./assets/js/script.js"></script>
-
-  <!--
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </body>
 
