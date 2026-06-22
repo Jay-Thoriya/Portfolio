@@ -370,8 +370,8 @@ function initHeroTyping() {
     'AI Engineer',
     'LLM & GenAI Architect',
     'RAG Pipeline Builder',
-    'Multi-Agent Systems Engineer',
-    'Document Intelligence Specialist'
+    'Document Intelligence Specialist',
+     'Multi-Agent Systems Engineer',
   ];
 
   let phraseIdx = 0;
