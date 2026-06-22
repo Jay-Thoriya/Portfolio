@@ -367,7 +367,7 @@ function initHeroTyping() {
   if (!el) return;
 
   const phrases = [
-    'Lead AI/ML Engineer',
+    'AI Engineer',
     'LLM & GenAI Architect',
     'RAG Pipeline Builder',
     'Multi-Agent Systems Engineer',
